@@ -16,22 +16,22 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin' //temurin은 자바 종류중의 하나.
+          distribution: 'temurin'
 
       - name: build jar
         working-directory: .
         run: |
-          chmod 777 ./gradlew //리눅스이므로 권한설정
+          chmod 777 ./gradlew 
           ./gradlew bootJar
 
       - name: copy jar to ec2 inst1
         uses: appleboy/scp-action@master
         with:
-          host: ${{secrets.EC2_HOST}} //내 ec2 DNS주소로.
+          host: ${{secrets.EC2_HOST}}
           username: ubuntu
           #          pemkey를 통해 해당 인스턴스에 접근
           key: ${{secrets.EC2_PEMKEY}}
-          source: "./build/libs/*.jar" //경로는 루트경로 바로 아래임 지금.
+          source: "./build/libs/*.jar"
           target: "/home/ubuntu"
       - name: install java and run jar on ec2 inst1
         uses: appleboy/ssh-action@master
