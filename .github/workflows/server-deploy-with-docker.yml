@@ -46,7 +46,8 @@ jobs:
           -e CLOUD_AWS_CREDENTIALS_ACCESS_KEY=${{ secrets.AWS_KEY }} \
           -e CLOUD_AWS_CREDENTIALS_ACCESS_KEY=${{ secrets.AWS_SECRET }} luail/ordersystem:latest
 
-          uses: appleboy/ssh-action@master
+    - name: ec2 ssh login and docker run
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST2 }}
         username: ubuntu
