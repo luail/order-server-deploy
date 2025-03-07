@@ -10,6 +10,7 @@ COPY settings.gradle .
 COPY gradlew .
 
 # 빌드
+RUN chmod +x gradlew
 RUN ./gradlew bootJar
 
 # 두번째 스테이지(Jar파일 실행하려면 java필요함)
